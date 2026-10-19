@@ -1,0 +1,31 @@
+﻿@model BE_TraThiDiemQuynh.Models.Category
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<h2 class="bg-success" style="padding:10px;">XÓA DANH MỤC</h2>
+
+<h3 class="alert-danger" style="padding:10px;">Bạn thực sự muốn xóa sản phẩm này à?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Tên danh mục
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại danh sách", "Index")
+        </div>
+    }
+</div>
