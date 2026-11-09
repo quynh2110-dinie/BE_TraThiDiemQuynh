@@ -1,0 +1,55 @@
+﻿@model BE_TraThiDiemQuynh.Models.ViewModel.RegisterVM
+@{
+    ViewBag.Title = "DĂNG NHẬP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .accountbtn {
+        width: 275px;
+        height: 40px;
+        border: 1px solid #808080;
+        margin: 5px;
+        align-items: center;
+    }
+
+</style>
+<!DOCTYPE html>
+<div>
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new
+    {
+        @class = "form-horizontal",
+        role = "form"
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <h2 class="col-md-6" style="text-align:center">Đăng nhập</h2>
+            </div>
+            @*Tên đăng nhập*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(m => m.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+            </div>
+            @*Mật khẩu*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Đăng nhập" class="btn btn-info accountbtn" />
+                    <p>Bạn Chưa Có Tài Khoản? <a href="@Url.Action("Register", "Account", null)"/>Đăng ký ngay</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
